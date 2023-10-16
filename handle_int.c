@@ -1,7 +1,6 @@
 #include "main.h"
-
 /**
- * write_number - Prints a string
+ * write_number - string is printed
  * @is_negative: Lists of arguments
  * @ind: char types
  * @buffer: Buffer array to handle print
@@ -9,8 +8,7 @@
  * @width: get width
  * @precision: precision specifier
  * @size: Size specifier
- *
- * Return: Number of chars printed.
+ * Return: char number printed
  */
 int write_number(int is_negative, int ind, char buffer[],
 	int flags, int width, int precision, int size)
@@ -34,7 +32,7 @@ int write_number(int is_negative, int ind, char buffer[],
 }
 
 /**
- * write_num - Writes a number using the bufffer
+ * write_num - Writes a number using the buffer
  * @ind: Index the number starts to buffer
  * @buffer: Buffer
  * @flags: Flags
@@ -89,46 +87,5 @@ int write_num(int ind, char buffer[],
 	if (extra_c)
 		buffer[--ind] = extra_c;
 	return (write(1, &buffer[ind], length));
-}
-/**
- * print_int - Prints the integer
- * @types: The lists of arguments
- * @buffer: The buffer array that handles printf function
- * @flags:  Calculates the active flags
- * @width: gets the width
- * @precision: Precision specifier
- * @size: The size specifier
- * Return: The number of chars to be printed
- */
-int print_int(va_list types, char buffer[],int flags, int width, int precision, int size)
-{
-	int i = BUFF_SIZE - 2;
-	int is_negative = 0;
-	long int n = va_arg(types, long int);
-	unsigned long int num;
-
-	n = convert_size_number(n, size);
-
-	if (n == 0)
-		buffer[i--] = '0';
-
-	buffer[BUFF_SIZE - 1] = '\0';
-	num = (unsigned long int)n;
-
-	if (n < 0)
-	{
-		num = (unsigned long int)((-1) * n);
-		is_negative = 1;
-	}
-
-	while (num > 0)
-	{
-		buffer[i--] = (num % 10) + '0';
-		num /= 10;
-	}
-
-	i++;
-
-	return (write_number(is_negative, i, buffer, flags, width, precision, size));
 }
 
