@@ -1,0 +1,13 @@
+#include "main.h"
+
+/**
+*_printf- format string to handle c,s and %
+*@formart: character string
+*
+*return: the number of characters printed (excluding the null byte used to end output to strings)
+*/
+
+int _printf(const char *format, ...);
+
+
+
